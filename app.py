@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -25,3 +26,18 @@ def show_post(post_id):
 def show_subpath(subpath):
     # show the subpath after /path/
     return f'Subpath {escape(subpath)}'
+
+@app.route('/projects/')
+def projects():
+    return 'The project page'
+
+@app.route('/about')
+def about():
+    return 'The about page'
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return "do the login"
+    else:
+        return "show the login form"
